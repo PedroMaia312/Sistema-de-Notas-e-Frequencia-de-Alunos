@@ -54,45 +54,29 @@ public class AlunoService {
         return alunosComBaixaFrequencia;
     }
 
-    public double calculateClassAverageGrade() {
-        Object[] notas = this.alunoRepository.findClassAverage();
-        double averageGrade = (Double) notas[0];
-        averageGrade *= (Integer) notas[1];
-        return averageGrade;
+    public Float calculateClassAverageGrade() {
+        return this.alunoRepository.findClassAverage();
     }
 
-    public double calculateClassAverageGradeInMatematica() {
-        Object[] notas = this.alunoRepository.findClassAverageInMatematica();
-        double averageGrade = (Double) notas[0];
-        averageGrade *= (Integer) notas[1];
-        return averageGrade;
+    public Float calculateClassAverageGradeInMatematica() {
+        return this.alunoRepository.findClassAverageInMatematica();
     }
 
-    public double calculateClassAverageGradeInPortugues() {
-        Object[] notas = this.alunoRepository.findClassAverageInPortugues();
-        double averageGrade = (Double) notas[0];
-        averageGrade *= (Integer) notas[1];
-        return averageGrade;
+    public Float calculateClassAverageGradeInPortugues() {
+        return this.alunoRepository.findClassAverageInPortugues();
+
     }
 
-    public double calculateClassAverageGradeInCiencia() {
-        Object[] notas = this.alunoRepository.findClassAverageInCiencia();
-        double averageGrade = (Double) notas[0];
-        averageGrade *= (Integer) notas[1];
-        return averageGrade;
+    public Float calculateClassAverageGradeInCiencia() {
+        return this.alunoRepository.findClassAverageInCiencia();
     }
 
-    public double calculateClassAverageGradeInGeografia() {
-        Object[] notas = this.alunoRepository.findClassAverageInGeografia();
-        double averageGrade = (Double) notas[0];
-        averageGrade *= (Integer) notas[1];
-        return averageGrade;
+    public Float calculateClassAverageGradeInGeografia() {
+        return this.alunoRepository.findClassAverageInGeografia();
     }
 
-    public double calculateClassAverageGradeInLiteratura() {
-        Object[] notas = this.alunoRepository.findClassAverageInLiteratura();
-        double averageGrade = (Double) notas[0];
-        averageGrade *= (Integer) notas[1];
-        return averageGrade;
+    public Float calculateClassAverageGradeInLiteratura() {
+        return this.alunoRepository.findClassAverageInLiteratura();
+
     }
 }

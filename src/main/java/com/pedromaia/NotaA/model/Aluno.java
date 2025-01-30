@@ -23,56 +23,49 @@ public class Aluno {
     private Integer id;
 
     @Column(name = "nome", length = 100, nullable = false)
-    @NotNull(groups = {CreateAluno.class, UpdateAluno.class})
     @NotEmpty(groups = {CreateAluno.class, UpdateAluno.class})
     private String nome;
 
     @Column(name = "nota_matematica", length = 100, nullable = false)
     @NotNull(groups = {CreateAluno.class, UpdateAluno.class})
-    @NotEmpty(groups = {CreateAluno.class, UpdateAluno.class})
     @Min(value = 0, message = "O valor não pode ser menor que 0.")
     @Max(value = 10, message = "O valor não pode ser maior que 10.")
     private float notaMatematica;
 
     @Column(name = "nota_portuguese", length = 100, nullable = false)
     @NotNull(groups = {CreateAluno.class, UpdateAluno.class})
-    @NotEmpty(groups = {CreateAluno.class, UpdateAluno.class})
     @Min(value = 0, message = "O valor não pode ser menor que 0.")
     @Max(value = 10, message = "O valor não pode ser maior que 10.")
     private float notaPortugues;
 
     @Column(name = "nota_ciencia", length = 100, nullable = false)
     @NotNull(groups = {CreateAluno.class, UpdateAluno.class})
-    @NotEmpty(groups = {CreateAluno.class, UpdateAluno.class})
     @Min(value = 0, message = "O valor não pode ser menor que 0.")
     @Max(value = 10, message = "O valor não pode ser maior que 10.")
     private float notaCiencia;
 
     @Column(name = "nota_geografia", length = 100, nullable = false)
     @NotNull(groups = {CreateAluno.class, UpdateAluno.class})
-    @NotEmpty(groups = {CreateAluno.class, UpdateAluno.class})
     @Min(value = 0, message = "O valor não pode ser menor que 0.")
     @Max(value = 10, message = "O valor não pode ser maior que 10.")
     private float notaGeografia;
 
     @Column(name = "nota_literatura", length = 100, nullable = false)
     @NotNull(groups = {CreateAluno.class, UpdateAluno.class})
-    @NotEmpty(groups = {CreateAluno.class, UpdateAluno.class})
     @Min(value = 0, message = "O valor não pode ser menor que 0.")
     @Max(value = 10, message = "O valor não pode ser maior que 10.")
     private float notaLiteratura;
 
     @Column(name = "frequencia", length = 100, nullable = false)
     @NotNull(groups = {CreateAluno.class, UpdateAluno.class})
-    @NotEmpty(groups = {CreateAluno.class, UpdateAluno.class})
     @Min(value = 0, message = "A frenquencia não pode ser menor que 0")
     @Max(value = 100, message = "A frenquencia não pode ser maior que 100")
-    private Double frequencia;
+    private float frequencia;
 
     public Aluno() {
     }
 
-    public Aluno(Integer id, String nome, float notaMatematica, float notaPortugues, float notaCiencia, float notaGeografia, float notaLiteratura, Double frequencia) {
+    public Aluno(Integer id, String nome, float notaMatematica, float notaPortugues, float notaCiencia, float notaGeografia, float notaLiteratura, float frequencia) {
         this.id = id;
         this.nome = nome;
         this.notaMatematica = notaMatematica;
@@ -139,11 +132,11 @@ public class Aluno {
         this.notaLiteratura = notaLiteratura;
     }
 
-    public Double getFrequencia() {
+    public float getFrequencia() {
         return frequencia;
     }
 
-    public void setFrequencia(Double frequencia) {
+    public void setFrequencia(float frequencia) {
         this.frequencia = frequencia;
     }
 

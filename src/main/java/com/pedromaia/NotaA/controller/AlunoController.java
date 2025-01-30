@@ -1,5 +1,6 @@
 package com.pedromaia.NotaA.controller;
 
+import com.pedromaia.NotaA.DTO.AlunoDTO;
 import com.pedromaia.NotaA.model.Aluno;
 import com.pedromaia.NotaA.service.AlunoService;
 import jakarta.validation.Valid;
@@ -12,20 +13,29 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/sala")
 @Validated
-public class alunoController {
+public class AlunoController {
 
     @Autowired
     private AlunoService alunoService;
 
 
     @GetMapping
-    public ResponseEntity<List<Aluno>> findAllAlunos() {
-        List<Aluno> objs = this.alunoService.findAll();
-        return ResponseEntity.ok().body(objs);
+    public List<AlunoDTO> findAllAlunos() {
+        return this.alunoService.findAll()
+                .stream()
+                .map(aluno -> new AlunoDTO(
+                        aluno.getNome(),
+                        (aluno.getNotaMatematica() + aluno.getNotaPortugues() +
+                                aluno.getNotaCiencia() + aluno.getNotaGeografia() +
+                                aluno.getNotaLiteratura()) / 5,
+                        aluno.getFrequencia()
+                ))
+                .collect(Collectors.toList());
     }
 
     @GetMapping("/{id}")
@@ -41,38 +51,38 @@ public class alunoController {
     }
 
     @GetMapping("/media")
-    public ResponseEntity<Double> classAvarege() {
-        Double media = this.alunoService.calculateClassAverageGrade();
+    public ResponseEntity<Float> classAvarege() {
+        float media = this.alunoService.calculateClassAverageGrade();
         return ResponseEntity.ok().body(media);
     }
 
     @GetMapping("/media-matematica")
-    public ResponseEntity<Double> classAvaregeInMatematica() {
-        Double media = this.alunoService.calculateClassAverageGradeInMatematica();
+    public ResponseEntity<Float> classAvaregeInMatematica() {
+        float media = this.alunoService.calculateClassAverageGradeInMatematica();
         return ResponseEntity.ok().body(media);
     }
 
     @GetMapping("/media-portugues")
-    public ResponseEntity<Double> classAvaregeInPortugues() {
-        Double media = this.alunoService.calculateClassAverageGradeInPortugues();
+    public ResponseEntity<Float> classAvaregeInPortugues() {
+        float media = this.alunoService.calculateClassAverageGradeInPortugues();
         return ResponseEntity.ok().body(media);
     }
 
     @GetMapping("/media-ciencia")
-    public ResponseEntity<Double> classAvaregeInCiencia() {
-        Double media = this.alunoService.calculateClassAverageGradeInCiencia();
+    public ResponseEntity<Float> classAvaregeInCiencia() {
+        float media = this.alunoService.calculateClassAverageGradeInCiencia();
         return ResponseEntity.ok().body(media);
     }
 
     @GetMapping("/media-geografia")
-    public ResponseEntity<Double> classAvaregeInGeografia() {
-        Double media = this.alunoService.calculateClassAverageGradeInGeografia();
+    public ResponseEntity<Float> classAvaregeInGeografia() {
+        float media = this.alunoService.calculateClassAverageGradeInGeografia();
         return ResponseEntity.ok().body(media);
     }
 
     @GetMapping("/media-literatura")
-    public ResponseEntity<Double> classAvaregeInLiteratura() {
-        Double media = this.alunoService.calculateClassAverageGradeInLiteratura();
+    public ResponseEntity<Float> classAvaregeInLiteratura() {
+        float media = this.alunoService.calculateClassAverageGradeInLiteratura();
         return ResponseEntity.ok().body(media);
     }
 
@@ -82,7 +92,7 @@ public class alunoController {
         this.alunoService.create(obj);
         URI uri = ServletUriComponentsBuilder
                 .fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
-        return ResponseEntity.created(uri).body(obj);
+        return ResponseEntity.created(uri).build();
     }
 
     @PutMapping("/{id}")
