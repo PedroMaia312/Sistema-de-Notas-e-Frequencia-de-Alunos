@@ -1,6 +1,8 @@
 package com.pedromaia.NotaA.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 
@@ -28,31 +30,43 @@ public class Aluno {
     @Column(name = "nota_matematica", length = 100, nullable = false)
     @NotNull(groups = {CreateAluno.class, UpdateAluno.class})
     @NotEmpty(groups = {CreateAluno.class, UpdateAluno.class})
+    @Min(value = 0, message = "O valor não pode ser menor que 0.")
+    @Max(value = 10, message = "O valor não pode ser maior que 10.")
     private float notaMatematica;
 
     @Column(name = "nota_portuguese", length = 100, nullable = false)
     @NotNull(groups = {CreateAluno.class, UpdateAluno.class})
     @NotEmpty(groups = {CreateAluno.class, UpdateAluno.class})
+    @Min(value = 0, message = "O valor não pode ser menor que 0.")
+    @Max(value = 10, message = "O valor não pode ser maior que 10.")
     private float notaPortugues;
 
     @Column(name = "nota_ciencia", length = 100, nullable = false)
     @NotNull(groups = {CreateAluno.class, UpdateAluno.class})
     @NotEmpty(groups = {CreateAluno.class, UpdateAluno.class})
+    @Min(value = 0, message = "O valor não pode ser menor que 0.")
+    @Max(value = 10, message = "O valor não pode ser maior que 10.")
     private float notaCiencia;
 
     @Column(name = "nota_geografia", length = 100, nullable = false)
     @NotNull(groups = {CreateAluno.class, UpdateAluno.class})
     @NotEmpty(groups = {CreateAluno.class, UpdateAluno.class})
+    @Min(value = 0, message = "O valor não pode ser menor que 0.")
+    @Max(value = 10, message = "O valor não pode ser maior que 10.")
     private float notaGeografia;
 
     @Column(name = "nota_literatura", length = 100, nullable = false)
     @NotNull(groups = {CreateAluno.class, UpdateAluno.class})
     @NotEmpty(groups = {CreateAluno.class, UpdateAluno.class})
+    @Min(value = 0, message = "O valor não pode ser menor que 0.")
+    @Max(value = 10, message = "O valor não pode ser maior que 10.")
     private float notaLiteratura;
 
     @Column(name = "frequencia", length = 100, nullable = false)
     @NotNull(groups = {CreateAluno.class, UpdateAluno.class})
     @NotEmpty(groups = {CreateAluno.class, UpdateAluno.class})
+    @Min(value = 0, message = "A frenquencia não pode ser menor que 0")
+    @Max(value = 100, message = "A frenquencia não pode ser maior que 100")
     private Double frequencia;
 
     public Aluno() {
