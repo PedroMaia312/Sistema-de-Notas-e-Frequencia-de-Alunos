@@ -17,6 +17,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/sala")
+@CrossOrigin(origins = "*")
 @Validated
 public class AlunoController {
 
@@ -24,7 +25,8 @@ public class AlunoController {
     private AlunoService alunoService;
 
 
-    @GetMapping
+    @GetMapping("/listar")
+    @CrossOrigin(origins = "http://localhost:3000")
     public List<AlunoDTO> findAllAlunos() {
         return this.alunoService.findAll()
                 .stream()
@@ -45,8 +47,8 @@ public class AlunoController {
     }
 
     @GetMapping("/alunos-frequencia-baixa")
-    public ResponseEntity<LinkedList<String>> findAlunosFrequenciaBaixa() {
-        LinkedList<String> objs = this.alunoService.findAlunosByLowFrenquecia();
+    public ResponseEntity<Object[]> findAlunosFrequenciaBaixa() {
+        Object[] objs = this.alunoService.findAlunosByLowFrenquecia();
         return ResponseEntity.ok().body(objs);
     }
 

@@ -13,7 +13,7 @@ public interface AlunoRepository extends JpaRepository<Aluno, Integer> {
 
 
     @Query("SELECT a.nome FROM Aluno a WHERE a.frequencia < 75 ORDER BY a.nome")
-    LinkedList<String> findAlunosWithLowestFrequencia();
+    Object[] findAlunosWithLowestFrequencia();
 
     @Query("SELECT SUM(a.notaMatematica) / COUNT(a) FROM Aluno a")
     Float findClassAverageInMatematica();

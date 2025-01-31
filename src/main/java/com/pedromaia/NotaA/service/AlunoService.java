@@ -49,8 +49,8 @@ public class AlunoService {
         }
     }
 
-    public LinkedList<String> findAlunosByLowFrenquecia() {
-        LinkedList<String> alunosComBaixaFrequencia = this.alunoRepository.findAlunosWithLowestFrequencia();
+    public Object[] findAlunosByLowFrenquecia() {
+        Object[] alunosComBaixaFrequencia = this.alunoRepository.findAlunosWithLowestFrequencia();
         return alunosComBaixaFrequencia;
     }
 
